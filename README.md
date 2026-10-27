@@ -1,8 +1,6 @@
-# Faker PHP — be_BY locale
+# Faker PHP: Belarusian (be_BY) locale
 
-Belarusian (`be_BY`) locale for [Faker PHP](https://github.com/xefi/faker-php).
-
-> This package is a work in progress: no extension ships yet. Contributions are welcome.
+Belarusian locale for [xefi/faker-php](https://github.com/xefi/faker-php). All data is in Belarusian (Cyrillic, official orthography).
 
 ## Installation
 
@@ -15,12 +13,31 @@ The service provider is discovered automatically through Composer.
 ## Usage
 
 ```php
-use Xefi\Faker\Faker;
+$faker = new Xefi\Faker\Faker('be_BY');
 
-$faker = new Faker('be_BY');
+$faker->name(gender: 'F');   // Кацярына Шыманская
+$faker->fullAddress();       // вул. Янкі Купалы, 28, 220030, Мінск
+$faker->company();           // ТАА «Мінскбудсэрвіс»
+$faker->unp();               // 292113015
+$faker->iban();              // BY60XEPB01979826101994987820
+$faker->colorName();         // Індыга
+$faker->sentences(1);        // Наша кампанія прапаноўвае кліентам якасныя паслугі...
 ```
 
 Generators without a `be_BY` variant fall back to the default locale.
+
+## What is included
+
+| Extension | Methods |
+|---|---|
+| Address | `region`, `city`, `postcode`, `houseNumber`, `streetName`, `streetAddress`, `fullAddress` |
+| Colors | `safeColorName`, `colorName` |
+| Company | `company`, `unp` (payer account number with a valid check digit) |
+| Financial | `iban` (28 characters, BY format) |
+| Person | `name`, `firstName`, `lastName`, `title` |
+| Text | `words`, `sentences`, `paragraphs` |
+
+Belarusian surnames often change with gender (Кавалёў, Кавалёва; Жылінскі, Жылінская). `name()` and `lastName()` always return the form that matches the gender.
 
 ## Contributing
 
